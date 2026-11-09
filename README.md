@@ -1,29 +1,24 @@
-# Descrición
+# IA Matematica Manuel Dono Araújo
 
-Emprega este arquivo para describir os cambios do teu proxecto.
+Este documento describe os cambios realizados ao proxecto.
 
-Utiliza o formato en markdown coas marcas básicas que aparcen no seguinte exemplo:
+Engadin unha nova escena co meu nome. Nesa escena:
 
-# Título principal
-## Subtítulo
+- Reutilicei o script de VillagerDrive para o xogador, cambiando a velocidade de **10** a **5**
+- Crei un novo script baseado no de *PigMove* chamado **ZombieMove**, no que modifiquei a magnitude de dirección a 1 para que os NPC aparezcan en riba do xogador en vez de enfrente del.
+- Utilicei os prefabs de *Pilgrim* e *Zombie* para as persoaxes da escea.
 
-Texto normal con **negriña** e *cursiva*.
 
-- Lista 1
-- Lista 2
-
-[Ligazón](https://exemplo.com)
-
+Aquí podes observar os cambios feitos ao script orixinal:
 
 ```csharp
-using UnityEngine;
+    private void LateUpdate() {
+        direction = goal.transform.position - this.transform.position;
+        this.transform.LookAt(goal.transform.position);
 
-public class OlaMundo : MonoBehaviour
-{
-    void Start()
-    {
-        Debug.Log("Ola, mundo desde C#!");
+        if(direction.magnitude > 1){
+            Vector3 velocity = direction.normalized * speed * Time.deltaTime;
+            this.transform.position = this.transform.position + velocity;
+        }
     }
-}
-
 ```
